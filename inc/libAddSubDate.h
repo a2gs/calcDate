@@ -9,7 +9,7 @@
 
 
 /* libAddSubDate.h
- * Library include file
+ * Library calcDate include file
  *
  *  Who     | When       | What
  *  --------+------------+----------------------------
