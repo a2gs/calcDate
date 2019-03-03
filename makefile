@@ -25,6 +25,7 @@ libDate: $(SOURCES)
 	$(CC) -c -o$(OBJ) -I$(INCDIR) $(SOURCES) $(CFLAGS)
 	$(AR) rc $(LIB) $(OBJ)
 	$(RANLIB) $(LIB)
+	-$(RM) $(OBJ)
 
 sample: clean libDate $(SRCDIR)/sample.c
 	$(CC) -o $(BINDIR)/sample $(SRCDIR)/sample.c $(CFLAGS) -I$(INCDIR) -L$(BINDIR) -la2gs_ToolBox_AddSubDate
