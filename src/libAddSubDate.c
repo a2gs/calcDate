@@ -20,6 +20,7 @@
 
 /* *** INCLUDES ************************************************************************ */
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 
@@ -95,17 +96,33 @@ int a2gs_DateCalculation(struct tm *dataStart, a2gs_AddSubOperation_e op, long d
 
 int a2gs_AddSubDate(int dia, int mes, int ano, int hora, int min, int seg, a2gs_AddSubOperation_e op, long delta, struct tm *dataEnd)
 {
-	int ret = 0;
-	/*long timezone_saved = 0;*/
 	struct tm dataStart;
+	char *tzname_save[2];
+	long timezone_save;
+	int daylight_save;
+	char *envTZ_save = NULL;
+	char fullEnvTZ_save[80] = {0};
+
+	extern long timezone;
+	extern char *tzname[2];
+   extern int daylight;
 
 	memset(&dataStart, 0, sizeof(struct tm));
 	memset(dataEnd,    0, sizeof(struct tm));
 
-	/*
-	timezone_saved = timezone;
+	/* Saving the TimeZone */
+	tzset();
+	tzname_save[0] = tzname[0]; tzname_save[1] = tzname[1];
+	timezone_save = timezone; daylight_save = daylight;
+	envTZ_save = secure_getenv("TZ");
+
+	/* Setting timezone to UTC */
+	daylight = 0;
 	timezone = 0;
-	*/
+	tzname[0] = tzname[1] = "GMT";
+
+	if(setenv("TZ", "UTC", 1) == -1)
+		return(-1);
 
 	dataStart.tm_sec = seg;
 	dataStart.tm_min = min;
@@ -115,35 +132,16 @@ int a2gs_AddSubDate(int dia, int mes, int ano, int hora, int min, int seg, a2gs_
 	dataStart.tm_year = ano - 1900;
 	dataStart.tm_isdst = 0;
 
-	/*
-	printf("In:\n");
-	printf("sec  : [%d]\n", dataStart.tm_sec);
-	printf("min  : [%d]\n", dataStart.tm_min);
-	printf("hour : [%d]\n", dataStart.tm_hour);
-	printf("mday : [%d]\n", dataStart.tm_mday);
-	printf("mon  : [%d / %d]\n", dataStart.tm_mon, mes);
-	printf("year : [%d / %d]\n", dataStart.tm_year, ano);
-	printf("wday : [%d]\n", dataStart.tm_wday);
-	printf("yday : [%d]\n", dataStart.tm_yday);
-	printf("isdst: [%d]\n==========================================\n", dataStart.tm_isdst);
-	*/
+	if(a2gs_DateCalculation(&dataStart, op, delta, dataEnd) == -1)
+		return(-1);
 
-	ret = a2gs_DateCalculation(&dataStart, op, delta, dataEnd);
+	/* Restoring the TimeZone */
+	tzname[0] = tzname_save[0]; tzname[1] = tzname_save[1];
+	timezone = timezone_save; daylight = daylight_save;
+	snprintf(fullEnvTZ_save, sizeof(fullEnvTZ_save), "TZ=%s", envTZ_save);
 
-	/*
-	printf("Out:\n");
-	printf("sec  : [%d]\n", dataEnd->tm_sec);
-	printf("min  : [%d]\n", dataEnd->tm_min);
-	printf("hour : [%d]\n", dataEnd->tm_hour);
-	printf("mday : [%d]\n", dataEnd->tm_mday);
-	printf("mon  : [%d]\n", dataEnd->tm_mon);
-	printf("year : [%d]\n", dataEnd->tm_year);
-	printf("wday : [%d]\n", dataEnd->tm_wday);
-	printf("yday : [%d]\n", dataEnd->tm_yday);
-	printf("isdst: [%d]\n==========================================\n", dataEnd->tm_isdst);
-	*/
+	if(putenv(fullEnvTZ_save) != 0)
+		return(-1);
 
-	/*timezone = timezone_saved;*/
-
-	return(ret);
+	return(0);
 }
