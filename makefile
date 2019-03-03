@@ -27,7 +27,7 @@ libDate: $(SOURCES)
 	$(RANLIB) $(LIB)
 
 sample: clean libDate $(SRCDIR)/sample.c
-	$(CC) -o $(BINDIR)/sample $(SRCDIR)/sample.c -I$(INCDIR) -L$(BINDIR) -la2gs_ToolBox_AddSubDate
+	$(CC) -o $(BINDIR)/sample $(SRCDIR)/sample.c $(CFLAGS) -I$(INCDIR) -L$(BINDIR) -la2gs_ToolBox_AddSubDate
 
 clean:
 	-$(RM) $(BINDIR)/*
