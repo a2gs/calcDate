@@ -1,4 +1,4 @@
-/* Andre Augusto Giannotti Scota (a2gs)                                                    
+/* Andre Augusto Giannotti Scota (a2gs)
  * andre.scota@gmail.com
  *
  * Lib calcDate
