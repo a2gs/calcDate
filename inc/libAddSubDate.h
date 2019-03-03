@@ -1,19 +1,19 @@
 /* Andre Augusto Giannotti Scota (a2gs)
  * andre.scota@gmail.com
  *
- * <Project Name>
+ * Lib calcDate
  *
- * <Licence>
+ * Public Domain
  *
  */
 
 
 /* libAddSubDate.h
- * <File description>
+ * Library include file
  *
  *  Who     | When       | What
  *  --------+------------+----------------------------
- *          |            |
+ *   a2gs   | 03/03/2019 | Creation
  *          |            |
  */
 
@@ -27,7 +27,7 @@
 
 
 /* *** DEFINES ************************************************************************* */
-#define A2GS_ADDSUBDATE_DAY_TO_SECONDS(__dayToSec)			((time_t)((60*60*24) * __dayToSec))
+#define A2GS_ADDSUBDATE_DAY_TO_SECONDS(__dayToSec)	((time_t)((60*60*24) * __dayToSec))
 
 
 /* *** DATA TYPES ********************************************************************** */
@@ -38,7 +38,7 @@ typedef enum{
 
 
 /* *** INTERFACES / PROTOTYPES ********************************************************* */
-/* int wrapperData(int dia, int mes, int ano, int hora, int min, int seg, a2gs_AddSubOperation_e op, long delta, struct tm *ret);
+/* int wrapperData(int dia, int mes, int ano, int hora, int min, int seg, a2gs_AddSubOperation_e op, long delta, struct tm *ret)
  *
  * <Description>
  *
