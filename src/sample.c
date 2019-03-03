@@ -1,5 +1,24 @@
+/* Andre Augusto Giannotti Scota (a2gs)
+ * andre.scota@gmail.com
+ *
+ * Sample lib calcDate
+ *
+ * Public Domain
+ *
+ */
+
+
+/* sample.c
+ * Sample to lib calcDate
+ *
+ *  Who     | When       | What
+ *  --------+------------+----------------------------
+ *   a2gs   | 03/03/2019 | Creation
+ *          |            |
+ */
+
 /*
- *      struct tm {
+        struct tm {
          int tm_sec;     * Seconds (0-60) * 
          int tm_min;     * Minutes (0-59) * 
          int tm_hour;    * Hours (0-23) * 
@@ -25,11 +44,24 @@
 */
 
 
+/* *** INCLUDES ************************************************************************ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 #include "libAddSubDate.h"
 
+
+/* *** DEFINES AND LOCAL DATA TYPE DEFINATION ****************************************** */
+
+
+/* *** LOCAL PROTOTYPES (if applicable) ************************************************ */
+
+
+/* *** EXTERNS / LOCAL / GLOBALS VARIEBLES ********************************************* */
+
+
+/* *** FUNCTIONS *********************************************************************** */
 int main(int argc, char *argv[])
 {
 
