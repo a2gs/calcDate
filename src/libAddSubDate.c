@@ -107,6 +107,23 @@ int a2gs_AddSubDate(int dia, int mes, int ano, int hora, int min, int seg, a2gs_
 	extern char *tzname[2];
    extern int daylight;
 
+	if     (mes == 1  && (dia < 1 || dia > 31)) return(-1);
+	else if(mes == 2  && (dia < 1 || dia > 29)) return(-1);
+	else if(mes == 3  && (dia < 1 || dia > 31)) return(-1);
+	else if(mes == 4  && (dia < 1 || dia > 30)) return(-1);
+	else if(mes == 5  && (dia < 1 || dia > 31)) return(-1);
+	else if(mes == 6  && (dia < 1 || dia > 30)) return(-1);
+	else if(mes == 7  && (dia < 1 || dia > 31)) return(-1);
+	else if(mes == 8  && (dia < 1 || dia > 31)) return(-1);
+	else if(mes == 9  && (dia < 1 || dia > 30)) return(-1);
+	else if(mes == 10 && (dia < 1 || dia > 31)) return(-1);
+	else if(mes == 11 && (dia < 1 || dia > 30)) return(-1);
+	else if(mes == 12 && (dia < 1 || dia > 31)) return(-1);
+
+	if(seg  < 0 || seg  > 59) return(-1);
+	if(min  < 0 || min  > 59) return(-1);
+	if(hora < 0 || hora > 23) return(-1);
+
 	memset(&dataStart, 0, sizeof(struct tm));
 	memset(dataEnd,    0, sizeof(struct tm));
 
