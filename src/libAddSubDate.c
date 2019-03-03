@@ -96,9 +96,16 @@ int a2gs_DateCalculation(struct tm *dataStart, a2gs_AddSubOperation_e op, long d
 int a2gs_AddSubDate(int dia, int mes, int ano, int hora, int min, int seg, a2gs_AddSubOperation_e op, long delta, struct tm *dataEnd)
 {
 	int ret = 0;
+	/*long timezone_saved = 0;*/
 	struct tm dataStart;
 
 	memset(&dataStart, 0, sizeof(struct tm));
+	memset(dataEnd,    0, sizeof(struct tm));
+
+	/*
+	timezone_saved = timezone;
+	timezone = 0;
+	*/
 
 	dataStart.tm_sec = seg;
 	dataStart.tm_min = min;
@@ -108,7 +115,35 @@ int a2gs_AddSubDate(int dia, int mes, int ano, int hora, int min, int seg, a2gs_
 	dataStart.tm_year = ano - 1900;
 	dataStart.tm_isdst = 0;
 
+	/*
+	printf("In:\n");
+	printf("sec  : [%d]\n", dataStart.tm_sec);
+	printf("min  : [%d]\n", dataStart.tm_min);
+	printf("hour : [%d]\n", dataStart.tm_hour);
+	printf("mday : [%d]\n", dataStart.tm_mday);
+	printf("mon  : [%d / %d]\n", dataStart.tm_mon, mes);
+	printf("year : [%d / %d]\n", dataStart.tm_year, ano);
+	printf("wday : [%d]\n", dataStart.tm_wday);
+	printf("yday : [%d]\n", dataStart.tm_yday);
+	printf("isdst: [%d]\n==========================================\n", dataStart.tm_isdst);
+	*/
+
 	ret = a2gs_DateCalculation(&dataStart, op, delta, dataEnd);
+
+	/*
+	printf("Out:\n");
+	printf("sec  : [%d]\n", dataEnd->tm_sec);
+	printf("min  : [%d]\n", dataEnd->tm_min);
+	printf("hour : [%d]\n", dataEnd->tm_hour);
+	printf("mday : [%d]\n", dataEnd->tm_mday);
+	printf("mon  : [%d]\n", dataEnd->tm_mon);
+	printf("year : [%d]\n", dataEnd->tm_year);
+	printf("wday : [%d]\n", dataEnd->tm_wday);
+	printf("yday : [%d]\n", dataEnd->tm_yday);
+	printf("isdst: [%d]\n==========================================\n", dataEnd->tm_isdst);
+	*/
+
+	/*timezone = timezone_saved;*/
 
 	return(ret);
 }

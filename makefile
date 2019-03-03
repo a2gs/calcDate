@@ -22,7 +22,7 @@ SOURCES = $(SRCDIR)/libAddSubDate.c
 all: clean libDate
 
 libDate: $(SOURCES)
-	$(CC) -c -o$(OBJ) -I$(INCDIR) $(SOURCES) $(CFLAGS)
+	$(CC) -c -o$(OBJ) -I$(INCDIR) $(SOURCES) $(CFLAGS) -Wno-unused-variable
 	$(AR) rc $(LIB) $(OBJ)
 	$(RANLIB) $(LIB)
 	-$(RM) $(OBJ)
