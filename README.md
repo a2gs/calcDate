@@ -1,4 +1,4 @@
 # calcDate
-API to add/subtract seconds (or days) from a given date
+API to add/subtract seconds (or days) from a given date.
 
-under construction...
+(make sample)
