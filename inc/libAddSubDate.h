@@ -66,6 +66,17 @@ static char *a2gs_AddSubDate_Months[]  = {"Jan", "Feb", "Mar", "Apr", "May", "Ju
  */
 int a2gs_AddSubDate(int dia, int mes, int ano, int hora, int min, int seg, a2gs_AddSubOperation_e op, long delta, struct tm *ret);
 
+/* int a2gs_AddSubDate_isLeapYear(int year)
+ *
+ * Return if a year (YYYY) is lead or not.
+ *
+ * INPUT:
+ *  year - year to check
+ * OUTPUT:
+ *  0 - is not a leap year
+ *  1 - is a leap year
+ */
+int a2gs_AddSubDate_isLeapYear(int year);
 
 /* *** EXAMPLE ************************************************************************* */
 #if 0

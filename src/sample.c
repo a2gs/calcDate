@@ -76,16 +76,16 @@ int main(int argc, char *argv[])
 	ret = a2gs_AddSubDate(dia, mes, ano, hora, min, seg, op, delta, &endDate);
 
 	if(ret == -1){
-		printf("Erro.\n");
+		printf("Data format error.\n");
 		return(-1);
 	}
 
-	printf("%02d/%02d/%02d %02d:%02d:%02d %c %ld secs = %02d/%s (%02d)/%02d %02d:%02d:%02d, Week: %s (%d), Day in the year: %d, Daylight saving time: %d\n",
+	printf("%02d/%02d/%02d %02d:%02d:%02d %c %ld secs = %02d/%s (%02d)/%02d %02d:%02d:%02d, Week: %s (%d), Day in the year: %d, Leap year: %s, Daylight saving time: %d\n",
 	       dia, mes, ano, hora, min, seg,
 	       argv[7][0], delta,
 	       endDate.tm_mday, A2GS_ADDSUBDATE_N_MONTH_TO_MONTH_STR(endDate.tm_mon), A2GS_ADDSUBDATE_MONTH(endDate.tm_mon), A2GS_ADDSUBDATE_YEAR(endDate.tm_year),
 	       endDate.tm_hour, endDate.tm_min, endDate.tm_sec, A2GS_ADDSUBDATE_N_DAY_TO_WEEK_STR(endDate.tm_wday), A2GS_ADDSUBDATE_WEEK(endDate.tm_wday),
-	       endDate.tm_yday, endDate.tm_isdst);
+	       endDate.tm_yday, (a2gs_AddSubDate_isLeapYear(A2GS_ADDSUBDATE_YEAR(endDate.tm_year)) ? "yes" : "no"), endDate.tm_isdst);
 
 	return(0);
 }
