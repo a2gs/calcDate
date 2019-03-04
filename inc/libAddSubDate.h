@@ -46,25 +46,25 @@ static char *a2gs_AddSubDate_Months[]  = {"Jan", "Feb", "Mar", "Apr", "May", "Ju
 
 
 /* *** INTERFACES / PROTOTYPES ********************************************************* */
-/* int wrapperData(int dia, int mes, int ano, int hora, int min, int seg, a2gs_AddSubOperation_e op, long delta, struct tm *ret)
+/* int a2gs_AddSubDate(int dia, int mes, int ano, int hora, int min, int seg, a2gs_AddSubOperation_e op, long delta, struct tm *dataEnd)
  *
  * <Description>
  *
  * INPUT:
- *  dia - 
- *  mes - 
- *  ano -
- *  hora -
- *  min - 
- *  seg - 
- *  op - 
- *  delta - 
+ *  dia - Start day
+ *  mes - Start month
+ *  ano - Start year
+ *  hora - Start hour
+ *  min -  Start minute
+ *  seg - Start second
+ *  op - Operation (ADD/SUB)
+ *  delta - Offset in seconds (can be used A2GS_ADDSUBDATE_DAY_TO_SECONDS())
  * OUTPUT:
- *  ret - 
- *  0 - 
- *  -1 - 
+ *  dataEnd - Calculated date
+ *  0 - Ok
+ *  -1 - Error (maybe input format error)
  */
-int a2gs_AddSubDate(int dia, int mes, int ano, int hora, int min, int seg, a2gs_AddSubOperation_e op, long delta, struct tm *ret);
+int a2gs_AddSubDate(int dia, int mes, int ano, int hora, int min, int seg, a2gs_AddSubOperation_e op, long delta, struct tm *dataEnd);
 
 /* int a2gs_AddSubDate_isLeapYear(int year)
  *

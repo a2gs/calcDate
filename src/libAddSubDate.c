@@ -75,15 +75,14 @@ int a2gs_DateCalculation(struct tm *dataStart, a2gs_AddSubOperation_e op, long d
  */
 int a2gs_AddSubDate_isLeapYear(int year)
 {
-	/* ugly but little less computation */
-	if(year % 4 == 0){
-		if(year % 100 == 0){
-			if(year % 400 == 0)
-				return(1);
-			return(0);
-		}
+	int m4 = 0, m100 = 0, m400 = 0;
+
+	m4   = year % 4;
+	m100 = year % 100;
+	m400 = year % 400;
+
+	if(((m4 == 0) && (m100 == 0) && (m400 == 0)) || ((m4 == 0) && (m100 != 0)))
 		return(1);
-	}
 
 	return(0);
 }
