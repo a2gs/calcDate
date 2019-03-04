@@ -99,7 +99,7 @@ int a2gs_AddSubDate(int dia, int mes, int ano, int hora, int min, int seg, a2gs_
 
 	extern long timezone;
 	extern char *tzname[2];
-   extern int daylight;
+	extern int daylight;
 
 	if     (mes == 1  && (dia < 1 || dia > 31)) return(-1);
 	else if(mes == 2  && (dia < 1 || dia > 29)) return(-1);
