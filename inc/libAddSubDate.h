@@ -3,7 +3,7 @@
  *
  * Lib calcDate
  *
- * Public Domain
+ * MIT License
  *
  */
 
